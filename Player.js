@@ -1,4 +1,4 @@
-class Cube {
+class Player {
     constructor(x, y){
         this.x = x,
         this.y = y,
@@ -7,15 +7,15 @@ class Cube {
         this.jumpDir = 1, // 1 => monte, -1 => descend
         this.jumpHeight = 100,
         this.height = 0,
-        this.isJumping = false
+        this.isJumping = false,
+        this.img = document.createElement('img'),
+        this.compteur = 0
     }
 
     draw(ctx){
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, 40, 40);
-        ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
-        ctx.fill();
-        ctx.closePath();
+        this.img.src = `./img/Run__00${this.compteur % 9}.png`
+        ctx.drawImage(this.img, this.x, this.y, 50, 50);
+        this.compteur++
     }
 
     update(){
