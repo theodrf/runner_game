@@ -6,9 +6,9 @@ let square_state = {
     y: 440,
     dx: 0,
     dy: 5,
+    jumpDir: 1, // 1 => monte, -1 => descend
     jumpHeight: 100,
-    jumpDuration: 15,
-    timer: 0,
+    height: 0,
     isJumping: false
 }
 function drawSquare(){
@@ -28,17 +28,15 @@ function drawFloor(){
 
 function update_square(){
     if (square_state.isJumping){
-        if (square_state.timer < square_state.jumpDuration/2){
-            square_state.x -= square_state.dx;
-            square_state.y -= square_state.dy;
-        } else {
-            square_state.x += square_state.dx;
-            square_state.y += square_state.dy;
+        if (square_state.height === 100){
+            square_state.jumpDir=-1
         }
-        square_state.timer++
-        if (square_state.timer >= square_state.jumpDuration){
+        square_state.x = square_state.x - square_state.jumpDir * square_state.dx;
+        square_state.y = square_state.y - square_state.jumpDir * square_state.dy;
+        square_state.height += square_state.jumpDir * square_state.dy;
+        if (square_state.height === 0){
             square_state.isJumping = false;
-            square_state.timer = 0;
+            square_state.jumpDir = 1
         }
     }
 }
