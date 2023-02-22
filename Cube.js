@@ -3,7 +3,7 @@ class Cube {
         this.x = x,
         this.y = y,
         this.dx = 0,
-        this.dy = 5,
+        this.dy = 10,
         this.jumpDir = 1, // 1 => monte, -1 => descend
         this.jumpHeight = 100,
         this.height = 0,
@@ -21,7 +21,7 @@ class Cube {
     update(){
         if (this.isJumping){
             if (this.height === 100){
-                this.jumpDir=-1
+                this.jumpDir=-0.5
             }
             this.x = this.x - this.jumpDir * this.dx;
             this.y = this.y - this.jumpDir * this.dy;

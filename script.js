@@ -1,20 +1,9 @@
-var canvas = document.getElementById("game");
-var ctx = canvas.getContext("2d");
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
+let game = new Game();
 let cube = new Cube(130, 440);
-
-function drawFloor(){
-    ctx.beginPath();
-    ctx.rect(0, 480, 960, 15);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
-}
-
-let x = canvas.width;
-let y = 445;
-let dx = -2;
-let dy = 0;
+let obstacle = new Obstacle(canvas.width, 445);
 
 document.addEventListener("keydown", function(event){
     if (event.code === "Space"){
@@ -22,20 +11,32 @@ document.addEventListener("keydown", function(event){
     }
 });
 
+function collision(game){
+    if(cube.x<obstacle.x +35 && cube.x+40> obstacle.x && cube.y<obstacle.y+35 && cube.y+40>obstacle.y){
+        game.end()
+    }
+}
+
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawFloor();
-    cube.draw(ctx);
-    cube.update();
+    if (!game.over){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        game.drawFloor(ctx)
+        cube.draw(ctx);
+        cube.update();
+        
+        obstacle.draw(ctx);
+        obstacle.update();
+        
+        if(obstacle.x ===0){
+            obstacle = new Obstacle(canvas.width, 445);
+        }
     
-    ctx.beginPath();
-    ctx.rect(x, y, 35, 35);
-    ctx.fillStyle = "#6BFF33";
-    ctx.fill();
-    ctx.closePath();
-    x += dx;
-    y += dy;
-    requestAnimationFrame(draw);
+        game.score +=2;
+        game.drawScore(ctx);
+    
+        collision(game)
+        requestAnimationFrame(draw);
+    } 
 }
 
 draw();
