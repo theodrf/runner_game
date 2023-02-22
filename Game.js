@@ -2,14 +2,12 @@ class Game {
     constructor(){
         this.score = 0,
         this.over = false
+        this.img = document.createElement('img')
     }
     
     drawFloor(ctx){
-        ctx.beginPath();
-        ctx.rect(0, 480, 960, 15);
-        ctx.fillStyle = "#FF0000";
-        ctx.fill();
-        ctx.closePath();
+        this.img.src= "./img/Floor.png"
+        ctx.drawImage(this.img, 0, 410);
     }
     
     drawScore(ctx) {

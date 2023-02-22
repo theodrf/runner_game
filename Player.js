@@ -14,7 +14,7 @@ class Player {
 
     draw(ctx){
         this.img.src = `./img/Run__00${this.compteur % 9}.png`
-        ctx.drawImage(this.img, this.x, this.y, 50, 50);
+        ctx.drawImage(this.img, this.x, this.y, 60, 60);
         this.compteur++
     }
 

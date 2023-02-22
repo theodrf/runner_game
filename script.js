@@ -2,8 +2,8 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
 let game = new Game();
-let player = new Player(120, 430);
-let obstacle = new Obstacle(canvas.width, 445);
+let player = new Player(110, 350);
+let obstacle = new Obstacle(canvas.width, 375);
 
 document.addEventListener("keydown", function(event){
     if (event.code === "Space"){
@@ -28,7 +28,7 @@ function draw() {
         obstacle.update();
         
         if(obstacle.x ===0){
-            obstacle = new Obstacle(canvas.width, 445);
+            obstacle = new Obstacle(canvas.width, 375);
         }
     
         game.score +=2;
