@@ -2,11 +2,17 @@ class Game {
     constructor(){
         this.score = 0,
         this.over = false
-        this.img = document.createElement('img')
+        this.img = document.createElement('img'),
+        this.background = document.createElement("img")
+    }
+    
+    drawBackground(ctx){
+        this.background.src = "./img/BG.png";
+        ctx.drawImage(this.background,0,0);
     }
     
     drawFloor(ctx){
-        this.img.src= "./img/Floor.png"
+        this.img.src= "./img/Floor.png";
         ctx.drawImage(this.img, 0, 410);
     }
     

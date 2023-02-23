@@ -1,17 +1,16 @@
 class Obstacle {
-    constructor(x,y){
+    constructor(x,y, obs){
         this.x = x,
         this.y = y,
+        this.obs = obs,
         this.dx = -8,
-        this.dy = 0
+        this.dy = 0,
+        this.img = document.createElement('img')
     }
 
     draw(ctx){
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, 35, 35);
-        ctx.fillStyle = "#6BFF33";
-        ctx.fill();
-        ctx.closePath();
+        this.img.src = `./img/${this.obs.name}.png`;
+        ctx.drawImage(this.img, this.x, this.y);
     }
 
     update(){
