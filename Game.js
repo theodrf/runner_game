@@ -4,7 +4,8 @@ class Game {
         this.over = false
         this.img = document.createElement('img'),
         this.background = document.createElement("img")
-        this.best = 0
+        this.best = 0,
+        this.xfloor = 0
     }
 
     getBestScore(){
@@ -22,7 +23,8 @@ class Game {
     
     drawFloor(ctx){
         this.img.src= "./img/Floor.png";
-        ctx.drawImage(this.img, 0, 410);
+        ctx.drawImage(this.img, this.xfloor, 410);
+        ctx.drawImage(this.img,this.xfloor+960,410)
     }
     
     drawScore(ctx) {

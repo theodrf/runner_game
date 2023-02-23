@@ -24,11 +24,15 @@ let player = new Player(120, 350);
 let obstacle = new Obstacle(canvas.width, 370, obstacles[0]);
 game.getBestScore()
 
+
 document.addEventListener("keydown", function(event){
     if (event.code === "Space"){
         player.jump();
     }
 });
+canvas.addEventListener('click', function(event){
+    player.jump()
+})
 
 function collision(game){
     if(player.x<obstacle.x +obstacle.obs.width && player.x+50> obstacle.x && player.y<obstacle.y+obstacle.obs.height && player.y+40>obstacle.y){
@@ -39,8 +43,14 @@ function collision(game){
 function draw() {
     if (!game.over){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
         game.drawBackground(ctx);
         game.drawFloor(ctx);
+        game.xfloor-=8
+        if(game.xfloor<=-960){
+            game.xfloor=0
+        }
+
         player.draw(ctx);
         player.update();
         
