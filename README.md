@@ -1,5 +1,5 @@
 # Runner Game
-Small game inspired by chrome://dino
+*Small game inspired by chrome://dino*
 ![Runner Game](https://raw.githubusercontent.com/theodrf/runner_game/master/img/screenshot.png)
 
 ## Try it :
