@@ -22,6 +22,7 @@ const obstacles = {
 let game = new Game();
 let player = new Player(120, 350);
 let obstacle = new Obstacle(canvas.width, 370, obstacles[0]);
+game.getBestScore()
 
 document.addEventListener("keydown", function(event){
     if (event.code === "Space"){
@@ -53,6 +54,7 @@ function draw() {
     
         game.score +=2;
         game.drawScore(ctx);
+        game.drawBest(ctx);
     
         collision(game)
         requestAnimationFrame(draw);
