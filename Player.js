@@ -4,7 +4,7 @@ class Player {
         this.y = y,
         this.dx = 0,
         this.dy = 10,
-        this.jumpDir = 1, // 1 => monte, -1 => descend
+        this.jumpDir = 1,
         this.jumpHeight = 100,
         this.height = 0,
         this.isJumping = false,
@@ -13,29 +13,29 @@ class Player {
     }
 
     draw(ctx){
-        this.img.src = `./img/Run__00${this.compteur % 9}.png`
+        this.img.src = `./img/Run__00${this.compteur % 9}.png`;
         ctx.drawImage(this.img, this.x, this.y, 60, 60);
-        this.compteur++
+        this.compteur++;
     }
 
     update(){
         if (this.isJumping){
             if (this.height === 100){
-                this.jumpDir=-0.5
+                this.jumpDir=-0.5;
             }
             this.x = this.x - this.jumpDir * this.dx;
             this.y = this.y - this.jumpDir * this.dy;
             this.height += this.jumpDir * this.dy;
             if (this.height === 0){
                 this.isJumping = false;
-                this.jumpDir = 1
+                this.jumpDir = 1;
             }
         }
     }
 
     jump(){
         if(!this.isJumping){
-            this.isJumping = true
+            this.isJumping = true;
         }
     }
 }

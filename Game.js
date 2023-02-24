@@ -3,7 +3,7 @@ class Game {
         this.score = 0,
         this.over = false
         this.img = document.createElement('img'),
-        this.background = document.createElement("img")
+        this.background = document.createElement("img"),
         this.best = 0,
         this.xfloor = 0,
         this.obstaclecounter = 0,
@@ -12,9 +12,9 @@ class Game {
 
     getBestScore(){
         if(!localStorage.getItem('best')){
-            this.best = 0
+            this.best = 0;
         } else {
-            this.best = localStorage.getItem('best')
+            this.best = localStorage.getItem('best');
         }
     }
     
@@ -26,7 +26,7 @@ class Game {
     drawFloor(ctx){
         this.img.src= "./img/Floor.png";
         ctx.drawImage(this.img, this.xfloor, 410);
-        ctx.drawImage(this.img,this.xfloor+960,410)
+        ctx.drawImage(this.img,this.xfloor+960,410);
     }
     
     drawScore(ctx) {
@@ -45,10 +45,10 @@ class Game {
         ctx.font = "36px Arial";
         ctx.fillStyle = "#D41A28";
         ctx.fillText(" Game Over ! Score: "+this.score, 250, 200);
-        ctx.fillText("Press Space to play again.", 250,240)
+        ctx.fillText("Press Space to play again.", 250,240);
         this.over = true;
         if (this.score > this.best){
-            localStorage.setItem("best", this.score)
+            localStorage.setItem("best", this.score);
         }
     }
 }

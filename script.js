@@ -32,12 +32,12 @@ document.addEventListener("keydown", function(event){
     }
 });
 document.addEventListener('click', function(event){
-    player.jump()
+    player.jump();
 });
 
 function collision(game){
     if(player.x<obstacle.x +obstacle.obs.width && player.x+50> obstacle.x && player.y<obstacle.y+obstacle.obs.height && player.y+40>obstacle.y){
-        game.end()
+        game.end();
     }
 }
 
@@ -47,10 +47,10 @@ function draw() {
         
         game.drawBackground(ctx);
         game.drawFloor(ctx);
-        game.xfloor+=game.speed
+        game.xfloor+=game.speed;
 
         if(game.xfloor<=-960){
-            game.xfloor=0
+            game.xfloor=0;
         }
 
         player.draw(ctx);
@@ -64,7 +64,7 @@ function draw() {
             obstacle = new Obstacle(canvas.width, 410-obstacles[type].height, obstacles[type], game.speed);
             game.obstaclecounter+=1;
             if (game.obstaclecounter%3 === 0){
-                game.speed-=1
+                game.speed-=1;
             }
         }
     
@@ -72,7 +72,7 @@ function draw() {
         game.drawScore(ctx);
         game.drawBest(ctx);
     
-        collision(game)
+        collision(game);
         requestAnimationFrame(draw);
     } 
 }
