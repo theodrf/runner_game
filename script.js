@@ -20,19 +20,20 @@ const obstacles = {
 }
 
 let game = new Game();
+game.getBestScore();
+
 let player = new Player(120, 350);
-let obstacle = new Obstacle(canvas.width, 370, obstacles[0]);
-game.getBestScore()
+let obstacle = new Obstacle(canvas.width, 370, obstacles[0], -8);
 
 
 document.addEventListener("keydown", function(event){
     if (event.code === "Space"){
-        player.jump();
+        game.over ? location.reload() : player.jump(); 
     }
 });
-canvas.addEventListener('click', function(event){
+document.addEventListener('click', function(event){
     player.jump()
-})
+});
 
 function collision(game){
     if(player.x<obstacle.x +obstacle.obs.width && player.x+50> obstacle.x && player.y<obstacle.y+obstacle.obs.height && player.y+40>obstacle.y){
@@ -46,7 +47,8 @@ function draw() {
         
         game.drawBackground(ctx);
         game.drawFloor(ctx);
-        game.xfloor-=8
+        game.xfloor+=game.speed
+
         if(game.xfloor<=-960){
             game.xfloor=0
         }
@@ -57,9 +59,13 @@ function draw() {
         obstacle.draw(ctx);
         obstacle.update();
         
-        if(obstacle.x ===0){
+        if(obstacle.x <=0){
             let type = Math.floor(Math.random()*3);
-            obstacle = new Obstacle(canvas.width, 410-obstacles[type].height, obstacles[type]);
+            obstacle = new Obstacle(canvas.width, 410-obstacles[type].height, obstacles[type], game.speed);
+            game.obstaclecounter+=1;
+            if (game.obstaclecounter%3 === 0){
+                game.speed-=1
+            }
         }
     
         game.score +=2;

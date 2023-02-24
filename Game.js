@@ -5,7 +5,9 @@ class Game {
         this.img = document.createElement('img'),
         this.background = document.createElement("img")
         this.best = 0,
-        this.xfloor = 0
+        this.xfloor = 0,
+        this.obstaclecounter = 0,
+        this.speed=-8
     }
 
     getBestScore(){
@@ -42,7 +44,8 @@ class Game {
     end() {
         ctx.font = "36px Arial";
         ctx.fillStyle = "#D41A28";
-        ctx.fillText(" Perdu ! Score: "+this.score, 200, 100);
+        ctx.fillText(" Game Over ! Score: "+this.score, 250, 200);
+        ctx.fillText("Press Space to play again.", 250,240)
         this.over = true;
         if (this.score > this.best){
             localStorage.setItem("best", this.score)

@@ -1,9 +1,9 @@
 class Obstacle {
-    constructor(x,y, obs){
+    constructor(x,y, obs, dx){
         this.x = x,
         this.y = y,
         this.obs = obs,
-        this.dx = -8,
+        this.dx = dx,
         this.dy = 0,
         this.img = document.createElement('img')
     }
